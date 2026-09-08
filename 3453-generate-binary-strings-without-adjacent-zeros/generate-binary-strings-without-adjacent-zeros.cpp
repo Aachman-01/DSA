@@ -1,24 +1,23 @@
 class Solution {
 public:
-
-    void generate(int n,string curr,vector<string>& res){
-        if(n==0){
-            res.push_back(curr);
-            return;
-        }
-        curr.push_back('1');
-        generate(n-1,curr,res);
-        curr.pop_back();
-        if(curr.empty() || curr.back()!='0'){
-            curr.push_back('0');
-            generate(n-1,curr,res);
-            curr.pop_back();
-        }
-    }
     vector<string> validStrings(int n) {
-        vector<string>res;
-        string curr;
-        generate(n,curr,res);
+        vector<string>res={"0","1"};
+        if(n==1){
+            return res;
+        }
+        for(int i=2;i<=n;i++){
+            vector<string>temp;
+            for(int j=0;j<res.size();j++){
+                if(res[j].back()=='1'){
+                    temp.push_back(res[j]+"1");
+                    temp.push_back(res[j]+"0");
+                }
+                else{
+                    temp.push_back(res[j]+"1");
+                }
+            }
+            res=temp;
+        }
         return res;
     }
 };
