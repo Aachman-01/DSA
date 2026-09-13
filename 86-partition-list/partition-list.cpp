@@ -33,7 +33,7 @@ public:
             }
         }
         t1tail->next=t2->next;
-        t2->next=NULL;
+        t2tail->next=NULL;
         t1=t1->next;
         return t1;
     }
