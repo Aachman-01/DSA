@@ -23,34 +23,34 @@ public:
         }
         int gap=abs(count1-count2);
         int i=0;
-        temp=headA;
+        ListNode *longer=headA;
         if(count1>count2){
-            ListNode *temp1=headB;
+            ListNode *shorter=headB;
             int i=0;
-            while(temp && i<gap){
+            while(longer && i<gap){
                 i++;
-                temp=temp->next;
+                longer=longer->next;
             }
-            while(temp1){
-                if(temp1 == temp){
-                    return temp;
+            while(shorter){
+                if(shorter == longer){
+                    return longer;
                 }
-                temp1=temp1->next;
-                temp=temp->next;
+                shorter=shorter->next;
+                longer=longer->next;
             }
         }else{
-            ListNode *temp1=headB;
+            ListNode *shorter=headB;
             int i=0;
-            while(temp1 && i<gap){
+            while(shorter && i<gap){
                 i++;
-                temp1=temp1->next;
+                shorter=shorter->next;
             }
-            while(temp){
-                if(temp1 == temp){
-                    return temp;
+            while(longer){
+                if(shorter == longer){
+                    return longer;
                 }
-                temp=temp->next;
-                temp1=temp1->next;
+                longer=longer->next;
+                shorter=shorter->next;
             }
         }
         return NULL;
