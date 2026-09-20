@@ -1,45 +1,24 @@
-    /**
-    * Definition for singly-linked list.
-    * struct ListNode {
-    *     int val;
-    *     ListNode *next;
-    *     ListNode(int x) : val(x), next(NULL) {}
-    * };
-    */
-    class Solution {
-    public:
-        ListNode *collisionpoint(ListNode *l1,ListNode *l2,int gap){
-            while(gap){
-                gap--;
-                l2=l2->next;
-            }
-            while (l1 && l2) {
-                if (l1 == l2) return l1;
-                    l1 = l1->next;
-                    l2 = l2->next;
-            }
-            return NULL;
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode(int x) : val(x), next(NULL) {}
+ * };
+ */
+class Solution {
+public:
+    ListNode *getIntersectionNode(ListNode *headA, ListNode *headB) {
+        if(headA==NULL || headB==NULL) return NULL;
+        ListNode *t1=headA;
+        ListNode *t2=headB;
+        while(t1!=t2){
+            t1=t1->next;
+            t2=t2->next;
+            if(t1==t2) return t1;
+            if(t1==NULL) t1=headB;
+            if(t2==NULL) t2=headA;
         }
-
-        ListNode *getIntersectionNode(ListNode *headA, ListNode *headB) {
-            ListNode* temp=headA;
-            int count1=0,count2=0;
-            while(temp){
-                count1++;
-                temp=temp->next;
-            }
-            temp=headB;
-            while(temp){
-                count2++;
-                temp=temp->next;
-            }
-            int gap=abs(count1-count2);
-            ListNode *longer=headA;
-            ListNode *shorter=headB;
-            if(count1>count2){
-                return collisionpoint(shorter,longer,gap);
-            }else{
-                return collisionpoint(longer,shorter,gap);
-            }
-        }
-    };
+        return t1;
+    }
+};
