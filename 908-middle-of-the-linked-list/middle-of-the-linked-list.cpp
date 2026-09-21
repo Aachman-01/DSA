@@ -10,28 +10,13 @@
  */
 class Solution {
 public:
-    ListNode* nexthalf(ListNode*temp,int mid){
-        while(mid--){
-            temp=temp->next;
-        }
-        return temp;
-    }
-
     ListNode* middleNode(ListNode* head) {
+        ListNode*ptr=head;
         ListNode*temp=head;
-        int count=0;
-        while(temp){
-            count++;
-            temp=temp->next;
+        while(temp && temp->next){
+            ptr=ptr->next;
+            temp=temp->next->next;
         }
-        temp=head;
-        if(count%2==1){
-            int mid=(count+1)/2;
-            return nexthalf(temp,mid-1);
-        }
-        else{
-            int mid=count/2;
-            return nexthalf(temp,mid);
-        }
+        return ptr;
     }
 };
