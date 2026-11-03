@@ -7,11 +7,9 @@ public:
         while(r<n){
             mp[fruits[r]]++;
             if(mp.size()>k){
-                while(mp.size()>k){
                     mp[fruits[l]]--;
                     if(mp[fruits[l]]==0) mp.erase(fruits[l]);
                     l++;
-                }
             }
             if(mp.size()<=k){
                 maxlength=max(maxlength,r-l+1);
